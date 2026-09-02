@@ -6,19 +6,18 @@
 </head>
 <body>
 <script>
-// Extract access token from URL fragment
-const hash = window.location.hash.substring(1);
-const params = new URLSearchParams(hash);
-const token = params.get("access_token");
+// Extract authorization code from the URL
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
 
-if (token) {
-  // Save token in localStorage so your main page can use it
-  localStorage.setItem("spotify_token", token);
+if (code) {
+  // Save the code temporarily in localStorage
+  localStorage.setItem("spotify_code", code);
 
-  // Redirect back to your main app page
-  window.location.href = "/index.html";
+  // Redirect back to your main page
+  window.location.href = "/Clock/index.html";
 } else {
-  document.body.innerHTML = "<p>No token found. Please log in again.</p>";
+  document.body.innerHTML = "<p>No code found. Please log in again.</p>";
 }
 </script>
 </body>
