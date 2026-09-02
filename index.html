@@ -79,6 +79,7 @@
   <button id="swStart">Start</button>
   <button id="swReset">Reset</button>
   <button id="fullscreenBtn">Fullscreen</button>
+  <button id="loginBtn">Login with Spotify</button>
 </div>
 
 <div class="spotify">
@@ -97,7 +98,8 @@
 function pad(n){return n.toString().padStart(2,'0');}
 function updateClock(){
   const now=new Date();
-  document.getElementById('time').textContent=pad(now.getHours())+':'+pad(now.getMinutes());
+  document.getElementById('time').textContent=
+    pad(now.getHours())+':'+pad(now.getMinutes());
 }
 updateClock();setInterval(updateClock,1000);
 
@@ -121,7 +123,11 @@ swStartBtn.onclick=()=>{
   if(!swRunning){swRunning=true;swStart=Date.now();tickSw();swStartBtn.textContent='Stop';}
   else{swRunning=false;swElapsed+=Date.now()-swStart;swStartBtn.textContent='Start';}
 };
-document.getElementById('swReset').onclick=()=>{swRunning=false;swElapsed=0;swDisplay.textContent='00:00.00';swStartBtn.textContent='Start';};
+document.getElementById('swReset').onclick=()=>{
+  swRunning=false;swElapsed=0;
+  swDisplay.textContent='00:00.00';
+  swStartBtn.textContent='Start';
+};
 
 /* Toggle clock/stopwatch */
 const toggleBtn=document.getElementById('toggleMode');
@@ -141,8 +147,11 @@ toggleBtn.onclick=()=>{
 
 /* Fullscreen */
 document.getElementById('fullscreenBtn').onclick=()=>{
-  if(!document.fullscreenElement){document.documentElement.requestFullscreen();}
-  else{document.exitFullscreen();}
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 };
 
 /* Spotify link loader */
@@ -152,6 +161,22 @@ document.getElementById('loadSpotify').onclick=()=>{
     let embedUrl=url.replace("open.spotify.com/","open.spotify.com/embed/");
     document.getElementById('spotifyFrame').src=embedUrl;
   }
+};
+
+/* Spotify Login */
+const clientId = "87e4d3bdd8ec4c069d7e54557d291292"; 
+const redirectUri = "https://aditishimanshu.github.io/Clock/callback.html"; 
+const scopes = [
+  "streaming",
+  "user-read-email",
+  "user-read-private",
+  "user-read-playback-state",
+  "user-modify-playback-state"
+];
+
+document.getElementById("loginBtn").onclick = () => {
+  const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scopes.join("%20")}`;
+  window.location.href = authUrl;
 };
 </script>
 </body>
