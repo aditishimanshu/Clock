@@ -67,13 +67,7 @@
   </div>
 </div>
 
-<div class="controls">
-  <button id="toggleMode">Switch to Stopwatch</button>
-  <button id="swStart">Start</button>
-  <button id="swReset">Reset</button>
-  <button id="fullscreenBtn">Fullscreen</button>
-  <button id="loginBtn">Login with Spotify</button>
-</div>
+
 
 <div class="spotify">
   <!-- Spotify Player Embed -->
@@ -144,16 +138,7 @@ document.getElementById('fullscreenBtn').onclick=()=>{
   }
 };
 
-/* Spotify Login */
-const clientId = "87e4d3bdd8ec4c069d7e54557d291292"; 
-const redirectUri = "https://aditishimanshu.github.io/Clock/callback.html"; 
-const scopes = [
-  "streaming",
-  "user-read-email",
-  "user-read-private",
-  "user-read-playback-state",
-  "user-modify-playback-state"
-];
+
 
 document.getElementById("loginBtn").onclick = () => {
   const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scopes.join("%20")}`;
