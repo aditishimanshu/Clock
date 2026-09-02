@@ -97,7 +97,9 @@
 function pad(n){return n.toString().padStart(2,'0');}
 function updateClock(){
   const now=new Date();
-  document.getElementById('time').textContent=pad(now.getHours())+':'+pad(now.getMinutes());
+  let hours=now.getHours()%12;
+  if(hours===0) hours=12;
+  document.getElementById('time').textContent=pad(hours)+':'+pad(now.getMinutes());
 }
 updateClock();setInterval(updateClock,1000);
 
