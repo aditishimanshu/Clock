@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Clock + Stopwatch + Spotify</title>
+<title>Clock + Stopwatch</title>
 <style>
   :root{
     --accent:#d6006f; /* dark pink */
@@ -46,22 +46,6 @@
     cursor:pointer;
   }
   :fullscreen .controls{display:none;} /* hide buttons in fullscreen */
-  :fullscreen .spotify-input{display:none;} /* hide input in fullscreen */
-  .spotify{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    align-items:flex-end;
-  }
-  .url-input{
-    width:300px;
-    padding:6px 8px;
-    border-radius:8px;
-    border:1px solid #ccc;
-  }
 </style>
 </head>
 <body>
@@ -79,18 +63,6 @@
   <button id="swStart">Start</button>
   <button id="swReset">Reset</button>
   <button id="fullscreenBtn">Fullscreen</button>
-</div>
-
-<div class="spotify">
-  <iframe id="spotifyFrame" style="border-radius:12px" 
-    src="https://open.spotify.com/embed/album/2Jc0evKv7asNZMx32rQHrF?utm_source=generator" 
-    width="300" height="80" frameBorder="0" 
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-    loading="lazy"></iframe>
-  <div class="spotify-input">
-    <input id="spotifyUrl" class="url-input" placeholder="Paste Spotify link here">
-    <button id="loadSpotify">Load</button>
-  </div>
 </div>
 
 <script>
@@ -145,15 +117,6 @@ toggleBtn.onclick=()=>{
 document.getElementById('fullscreenBtn').onclick=()=>{
   if(!document.fullscreenElement){document.documentElement.requestFullscreen();}
   else{document.exitFullscreen();}
-};
-
-/* Spotify link loader */
-document.getElementById('loadSpotify').onclick=()=>{
-  const url=document.getElementById('spotifyUrl').value.trim();
-  if(url){
-    let embedUrl=url.replace("open.spotify.com/","open.spotify.com/embed/");
-    document.getElementById('spotifyFrame').src=embedUrl;
-  }
 };
 </script>
 </body>
