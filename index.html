@@ -4,12 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Clock + Stopwatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
   :root{
-    --accent:#d6006f; /* dark pink */
-    font-family: Inter, system-ui, sans-serif;
+    --accent:#ffffff;
+    --glow: rgba(255, 255, 255, 0.85);
+    font-family: 'Cinzel Decorative', serif;
   }
-  html,body{height:100%;margin:0;}
+  html,body{height:100%;margin:0;overflow:hidden;}
   .app{
     height:100%;
     display:flex;
@@ -18,34 +22,64 @@
     justify-content:center;
     background:url("y.jpg") no-repeat center center fixed;
     background-size:cover;
+    position:relative;
+  }
+  .app::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 100%);
+    pointer-events:none;
   }
   .display{
-    font-size:12vw;
+    position:relative;
+    z-index:1;
+    font-size:11vw;
     font-weight:700;
     color:var(--accent);
     text-align:center;
     line-height:1;
-    text-shadow:0 0 20px rgba(214,0,111,0.8),
-               0 0 40px rgba(214,0,111,0.6);
+    letter-spacing: 6px;
+    text-shadow: 0 0 12px var(--glow),
+                0 0 30px rgba(255, 255, 255, 0.6),
+                0 0 60px rgba(255, 255, 255, 0.3);
+    animation: gothicPulse 4s infinite ease-in-out;
+  }
+  @keyframes gothicPulse {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,0.7)); }
+    50% { opacity: 0.82; filter: drop-shadow(0 0 6px rgba(255,255,255,0.3)); }
   }
   .controls{
     position:fixed;
-    bottom:20px;
+    bottom:30px;
     left:50%;
     transform:translateX(-50%);
     display:flex;
-    gap:12px;
+    gap:14px;
+    z-index:2;
   }
   button{
-    background:var(--accent);
-    color:white;
-    border:0;
-    padding:10px 14px;
-    border-radius:10px;
-    font-weight:600;
-    cursor:pointer;
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 18px;
+    border-radius: 4px;
+    font-family: 'UnifrakturMaguntia', 'Cinzel Decorative', serif;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), inset 0 0 8px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
   }
-  :fullscreen .controls{display:none;} /* hide buttons in fullscreen */
+  button:hover{
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+  :fullscreen .controls{display:none;}
 </style>
 </head>
 <body>
@@ -120,4 +154,4 @@ document.getElementById('fullscreenBtn').onclick=()=>{
 };
 </script>
 </body>
-</html>
+</html>     
