@@ -6,12 +6,12 @@
 <title>Clock + Stopwatch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturMaguntia&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   :root{
     --accent:#ffffff;
     --glow: rgba(255, 255, 255, 0.85);
-    font-family: 'Cinzel Decorative', serif;
+    font-family: 'Cinzel Decorative', serif; /* numbers stay gothic */
   }
   html,body{height:100%;margin:0;overflow:hidden;}
   .app{
@@ -59,24 +59,29 @@
     z-index:2;
   }
   button{
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     padding: 12px 18px;
-    border-radius: 4px;
-    font-family: 'UnifrakturMaguntia', 'Cinzel Decorative', serif;
-    font-size: 1.05rem;
+    border-radius: 12px;
+    font-family: 'Great Vibes', cursive; /* elegant script for text */
+    font-size: 1.2rem;
     letter-spacing: 1px;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9), inset 0 0 8px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.6),
+      inset 0 1px 4px rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
   }
   button:hover{
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.25);
     color: #000000;
-    border-color: #ffffff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 
+      0 6px 25px rgba(255, 255, 255, 0.6),
+      inset 0 1px 6px rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
   }
   :fullscreen .controls{display:none;}
@@ -154,4 +159,4 @@ document.getElementById('fullscreenBtn').onclick=()=>{
 };
 </script>
 </body>
-</html>     
+</html>
